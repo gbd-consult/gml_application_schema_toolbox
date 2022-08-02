@@ -9,7 +9,7 @@ from qgis.PyQt.QtGui import QStandardItemModel, QStandardItem
 from qgis.PyQt.QtWidgets import QMessageBox, QFileDialog
 
 from gml_application_schema_toolbox import name as plugin_name
-from gml_application_schema_toolbox.core.gmlas_postgis_db import GmlasPostgisDB
+# from gml_application_schema_toolbox.core.gmlas_postgis_db import GmlasPostgisDB
 from gml_application_schema_toolbox.core.settings import settings
 from gml_application_schema_toolbox.gui import InputError
 
@@ -103,10 +103,10 @@ class DatabaseWidget(BASE, WIDGET):
 
     @pyqtSlot(str)
     def on_pgsqlConnectionsBox_currentIndexChanged(self, text):
-        if self.pgsqlConnectionsBox.currentIndex() == -1:
-            self._pgsql_db = None
-        else:
-            self._pgsql_db = GmlasPostgisDB.from_name(self.pgsqlConnectionsBox.currentText())
+        # if self.pgsqlConnectionsBox.currentIndex() == -1:
+        self._pgsql_db = None
+        # else:
+            # self._pgsql_db = GmlasPostgisDB.from_name(self.pgsqlConnectionsBox.currentText())
 
         self.pgsqlSchemaBox.clear()
         if self._pgsql_db is None:

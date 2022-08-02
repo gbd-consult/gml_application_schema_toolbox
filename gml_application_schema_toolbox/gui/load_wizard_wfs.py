@@ -78,13 +78,18 @@ class LoadWizardWFS(QWizardPage, PAGE_1A_W):
     def wfs(self):
         name = self.connectionCombo.currentText()
         conn = QgsOwsConnection("wfs", name)
+        # uri = conn.uri().param('url').split('?')[0] + '?'
         uri = conn.uri().param('url')
         req_version = conn.uri().param('version')
+        user = conn.uri().param('user')
+        pwd = conn.uri().param('password')
         s = QgsSettings()
         checked_version = s.value("qgis/connections-wfs/{}/checked_version".format(name), False)
         if req_version == "auto" or not checked_version:
             # detect version
             u = QUrlQuery()
+            u.addQueryItem("user", user)
+            u.addQueryItem("password", pwd)
             u.addQueryItem("request", "GetCapabilities")
             u.addQueryItem("service", "WFS")
             if req_version == "auto":
@@ -169,6 +174,8 @@ class LoadWizardWFS(QWizardPage, PAGE_1A_W):
                                    QgsNewHttpConnection.ConnectionWfs,
                                    "qgis/connections-wfs/",
                                    conn)
+        QgsMessageLog.logMessage("Test: " + str(dlg.wfsSettingsKey("qgis/connections-wfs/",
+                                   conn)))
         dlg.setWindowTitle("Edit a WFS connection")
         if dlg.exec_() == QDialog.Accepted:
             self.refresh_connections()
@@ -230,7 +237,8 @@ class LoadWizardWFS(QWizardPage, PAGE_1A_W):
 
     def download_features(self, output_path):
         wfs = self.wfs()
-
+        # wfs.url = wfs.url.split('?')[0]
+        
         typenames = self.selected_typenames()
         if len(typenames) == 0:
             return
@@ -238,6 +246,14 @@ class LoadWizardWFS(QWizardPage, PAGE_1A_W):
         params = {
             'typename': typenames,
         }
+                        
+        # name = self.connectionCombo.currentText()
+        # conn = QgsOwsConnection("wfs", name)
+                
+        # params['user'] = conn.uri().param('user')
+        # params['password'] = conn.uri().param('password')
+        
+        
         if self.limitChkBox.isChecked():
             params['maxfeatures'] = self.featureLimitBox.value()
 

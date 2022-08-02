@@ -6,14 +6,13 @@ except ImportError:
 #from owslib.feature import WebFeatureService_
 from owslib.feature.wfs200 import WebFeatureService_2_0_0
 
-
 def getGETGetFeatureRequest_2_0_0(self, typename=None, filter=None, bbox=None, featureid=None,
                    featureversion=None, propertyname=None, maxfeatures=None,storedQueryID=None, storedQueryParams=None,
                                   outputFormat=None, method='Get', startindex=None, sortby=None):
     storedQueryParams = storedQueryParams or {}
 
     base_url = next((m.get('url') for m in self.getOperationByName('GetFeature').methods if m.get('type').lower() == method.lower()))
-    base_url = base_url if base_url.endswith("?") else base_url+"?"
+    base_url = base_url if base_url.endswith("&") else base_url+"&"
 
     request = {'service': 'WFS', 'version': self.version, 'request': 'GetFeature'}
 
@@ -21,6 +20,7 @@ def getGETGetFeatureRequest_2_0_0(self, typename=None, filter=None, bbox=None, f
     if featureid:
         request['featureid'] = ','.join(featureid)
     elif bbox:
+        bbox[4] = str(bbox[4])
         request['bbox'] = self.getBBOXKVP(bbox,typename)
     elif filter:
         request['query'] = str(filter)

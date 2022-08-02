@@ -15,8 +15,8 @@ qgisMaximumVersion=3.99
 description=Consumption and use of GML complex features like INSPIRE harmonised data (vector), GeoSciML within QGIS
 about=This plugins allows to import Complex Features streams in QGIS either through a native XML mode or through a conversion to a relational database model.
 
-version=1.2.0
-changelog=
+version=2.0.0
+changelog=*Anpassungen für die Bedürfnisse des LGL BW
 
 # tags are comma separated with spaces allowed
 tags=complex features, gml, gmlas, application schema, INSPIRE, GeoSciML, WaterML
@@ -27,7 +27,7 @@ repository=https://github.com/BRGM/gml_application_schema_toolbox
 icon=
 
 # experimental flag
-experimental=False
+experimental=True
 
 # deprecated flag (applies to the whole plugin, not just a single version
 deprecated=False
