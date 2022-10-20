@@ -111,6 +111,7 @@ def import_in_qgis(
 
     @param gmlas_uri connection parameters
     @param provider name of the QGIS provider that handles gmlas_uri parameters
+    @param add_form_code set this to true to load the custom form code
     @param schema name of the PostgreSQL schema where tables and metadata tables are
     """
     PlgLogger.log(
@@ -417,5 +418,6 @@ def import_in_qgis(
             c_1_n.addChildElement(QgsAttributeEditorRelation(rel.name(), rel, c_1_n))
 
         couche.setEditFormConfig(fc)
+        
         if add_form_code:
             install_viewer_on_feature_form(couche)
