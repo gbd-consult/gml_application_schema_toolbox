@@ -244,6 +244,9 @@ p, li { white-space: pre-wrap; }
           </item>
           <item>
            <widget class="QCheckBox" name="autoJoinCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt; Auto join &lt;b&gt;1:1&lt;/b&gt; relations using the QGIS Join Feature.&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Auto Join tables</string>
             </property>
@@ -287,6 +290,9 @@ p, li { white-space: pre-wrap; }
           </item>
           <item>
            <widget class="QCheckBox" name="addFormCodeCheckbox">
+            <property name="toolTip">
+             <string>&lt;html&gt; Add form code to the imported layers. May contain errors. &lt;html&gt;</string>
+            </property>
             <property name="text">
              <string>Add form code</string>
             </property>
