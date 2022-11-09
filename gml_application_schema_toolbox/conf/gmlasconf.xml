@@ -9,7 +9,7 @@
     </SchemaCache>
     <SchemaAnalysisOptions>
         <SchemaFullChecking>true</SchemaFullChecking>
-        <HandleMultipleImports>false</HandleMultipleImports>
+        <HandleMultipleImports>true</HandleMultipleImports>
     </SchemaAnalysisOptions>
     <Validation enabled="false">
         <FailIfError>false</FailIfError>
